@@ -1,0 +1,7 @@
+<% if @user %>
+  Hello <%= @user.username %>
+  <%= button_to 'Log Out', {controller: 'sessions', action: 'destroy'}, {method: :delete}%>
+<% else %>
+  <%= button_to 'Log In', {controller: 'sessions', action: 'new'}, {method: :get}%>
+  <%= button_to 'Make an account', {controller: 'users', action: 'new'}, {method: :get}%>
+<% end %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   ############################
   resource :session, only: [:new, :create, :destroy]
   resources :users
+  resource :static_pages
 
-  root :to => 'users#index'
+  root 'static_pages#index'
 end
