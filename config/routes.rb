@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # can only have one session in the browser
   ############################
   resource :session, only: [:new, :create, :destroy]
+  resources :pips, only: [:show, :create, :destroy]
   resources :users
   resource :static_pages
 

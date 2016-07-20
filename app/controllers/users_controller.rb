@@ -6,10 +6,13 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
-
   # GET /users/1
   # GET /users/1.json
   def show
+    if current_user
+      # Allow users to make pips if they are signed in.
+      @pip = Pip.new
+    end
   end
 
   # GET /users/new

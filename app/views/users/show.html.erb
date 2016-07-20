@@ -1,9 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
-  <strong>Username:</strong>
   <%= @user.username %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<!-- 
+Pip Submission
+--> 
+
+<% if current_user.id.to_s == params[:id] %>
+  <%= render 'pip_form' %>
+<% end %>
+
+
+<!-- TODO: Implement pagination for this -->
+<!-- That is, learn AJAX. -->
+<% @user.pips.all.each do |pip| %>
+  <%= pip.body %> <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%><br>
+<% end %>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %>
