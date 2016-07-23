@@ -6,9 +6,9 @@
 </p>
 
 
-<!-- 
+<!--
 Pip Submission
---> 
+-->
 <% if current_user %>
   <% if current_user.id.to_s == params[:id] %>
     <%= render 'pip_form' %>
@@ -19,12 +19,12 @@ Pip Submission
 <!-- TODO: Implement pagination for this -->
 <!-- That is, learn AJAX. -->
 <% @user.pips.all.each do |pip| %>
-  <%= pip.body %> 
+  <%= pip.body %>
   <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
   <% if current_user.favorited_pips.include? pip %>
-    <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post}%>
-  <% else %>
     <%= button_to 'Unfavorite Pip', {controller: 'favorites', action: 'destroy', pip_id: pip.id}, {method: :delete} %>
+  <% else %>
+    <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post}%>
   <% end %>
   <br>
 <% end %>
