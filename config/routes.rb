@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :pips, only: [:show, :create, :destroy]
   resources :users
+  resources :favorites
   resource :static_pages
 
   root 'static_pages#index'
