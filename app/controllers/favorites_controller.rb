@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
   def destroy
     Favorite.where(user_id: current_user.id, pip_id: params[:pip_id]).first.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Pip successfully unfavorited.' }
       format.json { head :no_content }
     end
   end
