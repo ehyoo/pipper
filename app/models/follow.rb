@@ -1,4 +1,4 @@
 class Follow < ActiveRecord::Base
-  belongs_to :follower, source: :user
-  belongs_to :followee, source: :user
+  belongs_to :user
+  belongs_to :followee, class_name: 'User'
 end

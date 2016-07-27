@@ -5,10 +5,11 @@
   <%= @user.username %>
 </p>
 
+<!-- Follow -->
+<%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
 
-<!--
-Pip Submission
--->
+
+<!-- Pip Submission -->
 <% if current_user %>
   <% if current_user.id.to_s == params[:id] %>
     <%= render 'pip_form' %>
@@ -16,6 +17,7 @@ Pip Submission
 <% end %>
 
 
+<!-- Showing all pips -->
 <!-- TODO: Implement pagination for this -->
 <!-- That is, learn AJAX. -->
 <% @user.pips.all.each do |pip| %>
