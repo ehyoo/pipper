@@ -7,10 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :follows
   has_many :followees, through: :follows, class_name: 'User'
-  has_secure_password # THIS IS MAGIC.
+  has_secure_password 
   
   def followers
-  	# get all users where the followed_id is 
   	User.find(Follow.where(followee_id: self.id).pluck(:user_id))
   end
 end

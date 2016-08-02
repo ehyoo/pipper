@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :pips, only: [:show, :create, :destroy]
   resources :users
   resources :favorites, only: [:create, :destroy]
-  resources :follows, only: [:create, :destroy]
+  resources :follows, only: [:create, :destroy, :show]
   resource :static_pages, only: [:index]
 
   root 'static_pages#index'

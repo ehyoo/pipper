@@ -1,0 +1,7 @@
+<% if @user.followers.empty? %>
+  <h3>You have no followers!<h3>
+<% else %>
+  <% @user.followers.each do |user| %>
+    <%= user.username %> <p>
+  <% end %>
+<% end %>

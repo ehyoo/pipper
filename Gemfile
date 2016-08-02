@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise' # Maybe use this later? I'm not actually doing anything with this right now
+
+gem 'high_voltage', '~>3.0.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

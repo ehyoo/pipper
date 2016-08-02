@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-some_user = User.create(username: 'Rob Test')
-other_user = User.create(username: 'Rob Test II')
+main_user = User.create(username: 'main_user', password: 'ayylmao')
+main_user.pips.create(body: 'This is the main user pip')
 
-some_user.pips.create(body: 'This is my first tweet!')
-other_user.pips.create(body: 'This is also my first tweet!')
+(2..6).each do |x|
+  u = User.create(username: "user#{x}", password:'test')
+  u.pips.create(body: "This is user#{x} reporting!")
+end
+

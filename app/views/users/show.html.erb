@@ -6,8 +6,15 @@
 </p>
 
 <!-- Follow -->
-<%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
 
+<% if current_user.followees.include? @user %>
+<%= button_to 'Unfollow User', {controller: 'follows', action: 'destroy', followee_id: @user.id}, {method: :delete} %>
+<% else %>
+<%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
+<% end %>
+
+<%= link_to 'Followers', follow_path(@user, follow_type: 'follower') %>
+<%= link_to 'Following', follow_path(@user, follow_type: 'followee') %>
 
 <!-- Pip Submission -->
 <% if current_user %>
