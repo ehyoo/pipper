@@ -5,16 +5,18 @@
   <%= @user.username %>
 </p>
 
-<!-- Follow -->
-
+<!-- Follow Buttons -->
 <% if current_user.followees.include? @user %>
-<%= button_to 'Unfollow User', {controller: 'follows', action: 'destroy', followee_id: @user.id}, {method: :delete} %>
+  <%= button_to 'Unfollow User', {controller: 'follows', action: 'destroy', followee_id: @user.id}, {method: :delete} %>
 <% else %>
-<%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
+  <%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
 <% end %>
 
-<%= link_to 'Followers', follow_path(@user, follow_type: 'follower') %>
+<!-- Follower/Following Listing -->
+<p>
+<%= link_to 'Followers', follow_path(@user, follow_type: 'follower') %><p>
 <%= link_to 'Following', follow_path(@user, follow_type: 'followee') %>
+<p>
 
 <!-- Pip Submission -->
 <% if current_user %>
@@ -23,11 +25,17 @@
   <% end %>
 <% end %>
 
-
 <!-- Showing all pips -->
 <!-- TODO: Implement pagination for this -->
-<!-- That is, learn AJAX. -->
-<% @user.pips.all.each do |pip| %>
+<!-- ok so for implementation of this,
+We'd want a few things: 
+Let's just do a very basic algorithm that gets all the pips of the users that the user follows
+and the user 
+
+puts it into an array and iterates through all of it.
+ -->
+<% @user.pips_of_self_and_following.each do |pip| %>
+  <h3><%= pip.user.username %></h3>
   <%= pip.body %>
   <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
   <% if current_user.favorited_pips.include? pip %>
