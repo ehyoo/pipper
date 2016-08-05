@@ -12,11 +12,12 @@ class FollowsController < ApplicationController
   end
 
   def create
-    user = User.find(params[:followee_id])
-    if user
-      current_user.followees << user
-      redirect_to User.find(params[:followee_id]), notice: 'You have successfully followed this user!'
+    if current_user.follow(params[:followee_id])
+      notice = 'You have successfully followed this user!'
+    else
+      notice = 'Something went wrong while following this user!'
     end
+    redirect_to User.find(params[:followee_id]), notice: notice
   end
 
   def destroy
