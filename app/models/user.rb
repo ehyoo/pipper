@@ -8,15 +8,22 @@ class User < ActiveRecord::Base
   has_many :followees, through: :follows, class_name: 'User'
   has_secure_password 
 
-  validates_presence_of :username, :password, :email
-  validates_uniqueness_of :username, :email
-  validates_length_of :username, within: 4..16
-  validates_format_of :username, with: /\A[\w\d]+\z/
-  validates_length_of :password, within: 6..16
-  validates_format_of :password,
-                      with: /\A(?=.*[a-zA-Z])(?=.*[0-9]).*\z/, 
-                      message: 'Password must contain at least one number and letter!'
-  
+  validates :username,
+            presence: true,
+            format: { with: /\A[\w\d]+\z/ },
+            uniqueness: true
+
+  validates :email,
+            uniqueness: true,
+            presence: true
+            # TODO: email validations
+
+  validates :password,
+            length: { within: 6..16 },
+            allow_nil: true,
+            format: { with: /\A(?=.*[a-zA-Z])(?=.*[0-9]).*\z/, 
+                      message: 'Password must contain at least one number and letter'} 
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
