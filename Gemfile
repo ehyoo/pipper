@@ -28,7 +28,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise' # Maybe use this later? I'm not actually doing anything with this right now
 
-gem 'high_voltage', '~>3.0.0'
+gem 'high_voltage', '~>3.0.0' # Static pages
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

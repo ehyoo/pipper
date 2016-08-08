@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
   ########### Note ###########
   # resource vs resources:
   # There can be many users, but you 
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
   resources :follows, only: [:create, :destroy, :show]
   resource :static_pages, only: [:index]
+  resources :password_resets
 
   root 'static_pages#index'
 end
