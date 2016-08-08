@@ -1,6 +1,7 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
+  before_create { generate_token(:auth_token) }
   has_many :pips, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_pips, through: :favorites, source: :pip
@@ -22,7 +23,8 @@ class User < ActiveRecord::Base
             length: { within: 6..16 },
             allow_nil: true,
             format: { with: /\A(?=.*[a-zA-Z])(?=.*[0-9]).*\z/, 
-                      message: 'Password must contain at least one number and letter'} 
+                      message: 'Password must contain at least one number and letter'},
+            confirmation: true
 
   def generate_token(column)
     begin

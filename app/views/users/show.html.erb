@@ -3,6 +3,9 @@
 
 <p>
   <%= @user.username %>
+  <% if current_user %>
+    <%= link_to 'Log Out', session_path, method: :delete %>
+  <% end %>
 </p>
 
 <!-- Follow Buttons -->
@@ -27,13 +30,6 @@
 
 <!-- Showing all pips -->
 <!-- TODO: Implement pagination for this -->
-<!-- ok so for implementation of this,
-We'd want a few things: 
-Let's just do a very basic algorithm that gets all the pips of the users that the user follows
-and the user 
-
-puts it into an array and iterates through all of it.
- -->
 <% @user.pips_of_self_and_following.each do |pip| %>
   <h3><%= pip.user.username %></h3>
   <%= pip.body %>
