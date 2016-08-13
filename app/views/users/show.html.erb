@@ -1,46 +1,37 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <%= render "navbar"%>
+  <body>
+    <p id="notice"><%= notice %></p>
+    <div class="col-md-3">  
+      <h3><%= @user.nickname %></h3>
+      @<%= @user.username %><br><br>
+      <%= @user.description %><br>
+    </div>
+
+    <!-- Showing all pips -->
+    <!-- TODO: Implement pagination for this -->
+    <div class="col-md-6">
+        <%= render "stats_bar", object: @user%>
+    </div>
+    
+    <div class="col-md-6"> 
+      <% @user.pips.each do |pip| %>
+        <div class="pip-box">
+          <b><%= pip.user.nickname %></b> @<%= pip.user.username%><br>
+          <%= pip.body %>
+          <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
+            <% if current_user.favorited_pips.include? pip %>
+              <%= button_to 'Unfavorite Pip', {controller: 'favorites', action: 'destroy', pip_id: pip.id}, {method: :delete} %>
+            <% else %>
+              <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post}%>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
 
 
-<p>
-  <%= @user.username %>
-  <% if current_user %>
-    <%= link_to 'Log Out', session_path, method: :delete %>
-  <% end %>
-</p>
-
-<!-- Follow Buttons -->
-<% if current_user.followees.include? @user %>
-  <%= button_to 'Unfollow User', {controller: 'follows', action: 'destroy', followee_id: @user.id}, {method: :delete} %>
-<% else %>
-  <%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
-<% end %>
-
-<!-- Follower/Following Listing -->
-<p>
-<%= link_to 'Followers', follow_path(@user, follow_type: 'follower') %><p>
-<%= link_to 'Following', follow_path(@user, follow_type: 'followee') %>
-<p>
-
-<!-- Pip Submission -->
-<% if current_user %>
-  <% if current_user.id.to_s == params[:id] %>
-    <%= render 'pip_form' %>
-  <% end %>
-<% end %>
-
-<!-- Showing all pips -->
-<!-- TODO: Implement pagination for this -->
-<% @user.pips_of_self_and_following.each do |pip| %>
-  <h3><%= pip.user.username %></h3>
-  <%= pip.body %>
-  <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
-  <% if current_user.favorited_pips.include? pip %>
-    <%= button_to 'Unfavorite Pip', {controller: 'favorites', action: 'destroy', pip_id: pip.id}, {method: :delete} %>
-  <% else %>
-    <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post}%>
-  <% end %>
-  <br>
-<% end %>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %>
+  </body>
+</html>

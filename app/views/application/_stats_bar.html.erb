@@ -1,0 +1,23 @@
+<div id="user-stats">
+  <div style="float: left; width: 33%;">
+    <%= link_to 'Followers', follow_path(@user, follow_type: 'follower') %><br>
+    <%= @user.followers.count %>
+  </div>
+  <div style="float: left; width: 34%;">
+    <%= link_to 'Following', follow_path(@user, follow_type: 'followee') %><br>
+    <%= @user.followees.count %>
+  </div>
+  <div style="float: left; width: 33%;">
+    Favorites<br>
+    <%= @user.favorites.count %>
+    <!-- <%= link_to 'Favorites', follow_path(@user, follow_type: 'follower') %> -->
+  </div>
+    <!-- Follow Buttons -->
+  <% if @user != current_user %>
+    <% if current_user.followees.include? @user %>
+      <%= button_to 'Unfollow User', {controller: 'follows', action: 'destroy', followee_id: @user.id}, {method: :delete} %>
+    <% else %>
+      <%= button_to 'Follow User', {controller: 'follows', action: 'create', followee_id: @user.id}, {method: :post} %>
+    <% end %>
+  <% end %>
+</div>

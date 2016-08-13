@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
 
   validates :email,
             uniqueness: true,
-            presence: true
+            presence: true,
+            confirmation: true
             # TODO: email validations
 
   validates :password,
