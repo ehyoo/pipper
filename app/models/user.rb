@@ -16,17 +16,13 @@ class User < ActiveRecord::Base
 
   validates :email,
             uniqueness: true,
-            presence: true,
-            confirmation: true
-            # TODO: email validations
+            presence: true
 
   validates :password,
             length: { within: 6..16 },
             allow_nil: true,
             format: { with: /\A(?=.*[a-zA-Z])(?=.*[0-9]).*\z/, 
-                      message: 'Password must contain at least one number and letter'},
-            confirmation: true
-
+                      message: 'Password must contain at least one number and letter'}
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

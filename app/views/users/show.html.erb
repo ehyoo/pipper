@@ -20,7 +20,7 @@
     <div class="col-md-6"> 
       <% @user.pips.each do |pip| %>
         <div class="pip-box">
-          <b><%= pip.user.nickname %></b> @<%= pip.user.username%><br>
+          <b><%= link_to pip.user.nickname, pip.user %></b> @<%= pip.user.username%><br>
           <%= pip.body %>
           <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
             <% if current_user.favorited_pips.include? pip %>

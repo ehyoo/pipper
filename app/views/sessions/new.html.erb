@@ -1,19 +1,19 @@
-<h1>Sign in</h1>
+<div id="login-modal" class="modal">
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %>
 
-<% if flash[:alert] %>
-  <%= flash[:alert] %>
-<% end %>
+  <%= form_tag(session_path) do %>
+    <%= label_tag 'username'%>
+    <%= text_field_tag :username, params[:username], required: true%><br>
 
-<%= form_tag(session_path) do %>
-  <%= label_tag 'username'%>
-  <%= text_field_tag :username, params[:username], required: true%><p>
+    <%= label_tag 'password'%>
+    <%= password_field_tag :password, params[:password], required: true%><br>
+    <%= link_to 'forgot password?', new_password_reset_path %><br>
 
-  <%= label_tag 'password'%>
-  <%= password_field_tag :password, params[:password], required: true%><p>
-  <p><%= link_to 'forgot password?', new_password_reset_path %></p>
-
-  <%= label_tag :remember_me %>
-  <%= check_box_tag :remember_me, 1, params[:remember_me] %><p>
-  
-  <%= submit_tag 'Sign in' %>
-<% end %>
+    <%= label_tag :remember_me %>
+    <%= check_box_tag :remember_me, 1, params[:remember_me] %><br>
+    
+    <%= submit_tag 'Sign in' %>
+  <% end %>
+</div>

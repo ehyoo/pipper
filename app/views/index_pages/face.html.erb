@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid" id="intro-jumbo">
+      <div class="container">
+        <h1 class="display-3">Pipper</h1>
+        <p class="lead"><%= @description %></p>
+        <button class="btn btn-lg btn-primary" id="login-modal">Log In</button>
+
+        <%= button_to 'Log In', login_url, {method: :get, class: "btn btn-lg btn-primary"}%>
+        <% @user = User.new %>
+        <%= render "users/form"%> 
+        <%= link_to "modaltest", "#login-modal", "data-toggle" => "modal" %>
+        <%= button_to 'Make an account', join_url, {method: :get, class: "btn btn-lg btn-secondary"}%>
+      </div>
+    </div>
+  </body>
+</html>
+
+
