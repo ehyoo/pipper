@@ -7,7 +7,8 @@ class IndexPagesController < ApplicationController
                                           'Not a ripoff of twitter.',
                                           'Waddup.',
                                           "It's just a learning experience bro.",
-                                          "\"Absolutely brilliant\" -main_user"]
+                                          "\"Absolutely brilliant\" -main_user",
+                                          "Best thing since sliced bread."]
       @description = tounge_in_cheek_description_array.sample
       render :face
     end

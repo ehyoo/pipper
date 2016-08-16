@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   validates :username,
             presence: true,
             format: { with: /\A[\w\d]+\z/ },
-            uniqueness: true
+            uniqueness: true,
+            length: { within: 4..16 }
 
   validates :email,
             uniqueness: true,
