@@ -1,0 +1,34 @@
+// Log out/new user form styling
+.session-section {
+  border-radius: 40px;
+  border: 2px solid black;
+  width: 45%;
+  margin: auto;
+  padding: 50px;
+  background-color: #fff;
+  text-align: center;
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 5px;
+    margin: 8px 0px;
+    border-radius: 3px;
+    border: 1px solid #E1E8ED;
+  }
+  input[type=submit] {
+    width: 100%;
+    padding: 5px;
+    color: white;
+    background-color: #F45D22;
+    border: 0px;
+    border-radius: 5px;
+  }
+  #remember-me, #forgot-password {
+    display: inline;
+  }
+  #remember-me {
+    float: left;
+  }
+  #forgot-password {
+    float: right;
+  }
+}
