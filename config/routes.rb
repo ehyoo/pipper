@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resources :pips, only: [:show, :create, :destroy]
-  resources :users
+  resources :users, except: [:index]
   resources :favorites, only: [:create, :destroy]
   resources :follows, only: [:create, :destroy, :show]
   resource :index_pages, only: [:index]

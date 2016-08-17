@@ -51,4 +51,8 @@ class User < ActiveRecord::Base
   def follow(followee_id)
     Follow.new(user_id: self.id, followee_id: followee_id.to_i).save
   end
+
+  def nickname
+    self.read_attribute(:nickname) || write_attribute(:nickname, username)
+  end
 end
