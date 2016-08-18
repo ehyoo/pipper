@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
   	User.find(Follow.where(followee_id: self.id).pluck(:user_id))
   end
 
+  def following
+    # alias for followees for clarity
+    followees
+  end
+
   def pips_of_self_and_following
     # Lists all the pips that the current user has written as well as 
     # the pips that the followees have written

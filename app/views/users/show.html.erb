@@ -17,7 +17,7 @@
         <%= render "stats_bar", object: @user%>
     </div>
     
-    <div class="col-md-6"> 
+    <div class="col-md-6">
       <% @user.pips.each do |pip| %>
         <div class="pip-box">
           <b><%= link_to pip.user.nickname, pip.user %></b> @<%= pip.user.username%><br>

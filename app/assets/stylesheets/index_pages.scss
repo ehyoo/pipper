@@ -9,11 +9,14 @@ html, body {
   border: 1px solid black;
 }
 
-#join-form {
-  padding: 30px 0px 30px 0px;
+#current-user-section {
+  border: 1px solid black;
+  background: white;
+  margin: 10px;
+  padding: 10px;
 }
 
-.rounded-container {
-  border-radius: 25px;
-  border: 1px solid black;
+.current-user-stat-section {
+  float: left;
+  width: 33%;
 }

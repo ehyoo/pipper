@@ -1,1 +1,34 @@
-This is the home pip feed
+<!doctype HTML>
+<html>
+<head>
+</head>
+  <body>
+    <%= render "navbar" %>
+    <div class="col-md-3" id="current-user-section">
+      <h3><%= current_user.nickname %></h3>
+      @<%= current_user.username %></br>
+
+      <div class="current-user-stat-section">
+        Pips</br>
+        <%= current_user.pips.count %>
+      </div>
+      <div class="current-user-stat-section">
+        Following</br>
+        <%= current_user.following.count %>
+      </div>
+      <div class="current-user-stat-section">
+        Followers</br>
+        <%= current_user.followers.count %>
+      </div>
+    </div>
+
+    <div id="pip-listing">
+      <% current_user.pips_of_self_and_following.each do |pip| %>
+        <div class="pip-box">
+          <%= pip.user.username %>
+          <%= pip.body %><br>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>
