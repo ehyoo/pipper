@@ -1,6 +1,7 @@
 class IndexPagesController < ApplicationController
   def index
     if current_user
+      @pip = Pip.new
       render :home_pip_feed
     else
       tounge_in_cheek_description_array = ['A totally original social network.',

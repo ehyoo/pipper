@@ -1,6 +1,20 @@
-<h1>Editing User</h1>
+<h1>Settings</h1>
+<%= render 'navbar' %>
+<div id="setting-box">
+  <%= form_for(@user) do |f| %> 
+    <div class="field">
+      <%= f.label :username %>
+      <%= f.text_field :username, placeholder: "username" %>
+    </div>
+    <div class="field">
+      <%= f.label :Email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="actions">
+      <%= f.submit %> 
+    </div>
+  <% end %>
+</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+

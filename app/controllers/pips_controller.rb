@@ -13,10 +13,10 @@ class PipsController < ApplicationController
     @pip.user = current_user
     respond_to do |format|
       if @pip.save
-        format.html { redirect_to current_user, notice: 'User was successfully created.' }
+        format.html { redirect_to :back, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @pip }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: "Something went wrong" }
         format.json { render json: @pip.errors, status: :unprocessable_entity }
       end
     end
@@ -25,7 +25,7 @@ class PipsController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @pip = Pip.find(params[:pip_id])
+    @pip = Pip.find(params[:id])
     @pip.destroy
     respond_to do |format|
       format.html { redirect_to current_user, notice: 'Pip was successfully destroyed.' }

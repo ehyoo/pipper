@@ -22,10 +22,13 @@
       </div>
     </div>
 
-    <div class="col-md-6" id="pip-listing">
-      <% current_user.pips_of_self_and_following.each do |pip| %>
-        <%= render "pip_list_cell", pip: pip %>
-      <% end %>
+    <div class="col-md-6">
+      <%= render partial: '/pips/pip_form' %>
+      <div id="pip-listing">
+        <% current_user.pips_of_self_and_following.each do |pip| %>
+          <%= render "pip_list_cell", pip: pip %>
+        <% end %>
+      </div>
     </div>
   </body>
 </html>

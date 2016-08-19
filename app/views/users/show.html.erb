@@ -19,19 +19,9 @@
     
     <div class="col-md-6">
       <% @user.pips.each do |pip| %>
-        <div class="pip-box">
-          <b><%= link_to pip.user.nickname, pip.user %></b> @<%= pip.user.username%><br>
-          <%= pip.body %>
-          <%= button_to 'Delete Pip', {controller: 'pips', action: 'destroy', pip_id: pip.id}, {method: :delete}%>
-            <% if current_user.favorited_pips.include? pip %>
-              <%= button_to 'Unfavorite Pip', {controller: 'favorites', action: 'destroy', pip_id: pip.id}, {method: :delete} %>
-            <% else %>
-              <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post}%>
-            <% end %>
-        </div>
+          <%= render 'pip_list_cell', pip: pip %>
       <% end %>
     </div>
-
 
   </body>
 </html>

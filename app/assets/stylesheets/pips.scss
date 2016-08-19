@@ -12,6 +12,22 @@
   }
 }
 
-.delete-pip-button {
-  color: blue;
+#pip-form {
+  padding: 30px;
+  #body-input-field {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    resize: none;
+  }
+  #pip-submit-button {
+    border-radius: 10px;
+    width: 35%;
+    border: 0px;
+    color: white;
+    background-color: #F45D22; 
+  }
 }
+
+
+
