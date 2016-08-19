@@ -1,0 +1,16 @@
+<div class="pip-box">
+  <b><%= link_to "#{pip.user.username}", user_path(pip.user) %></b> @<%= pip.user.username %></br>
+  <%= pip.body %><br>
+
+  <div class="pip-action-box">
+    <%= button_to 'Delete Pip', pip_path(pip), method: :delete, class: "btn btn-small"%>
+      <% if current_user.favorited_pips.include? pip %>
+        <%= button_to 'Unfavorite Pip', 
+            favorite_path(current_user.favorite_of_pip(pip)), 
+            method: :delete,
+            class: "btn btn-small" %>
+      <% else %>
+        <%= button_to 'Favorite Pip', {controller: 'favorites', action: 'create', pip_id: pip.id}, {method: :post, class: "btn btn-small"}%>
+      <% end %>
+  </div>
+</div>

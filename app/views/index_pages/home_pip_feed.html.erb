@@ -5,7 +5,7 @@
   <body>
     <%= render "navbar" %>
     <div class="col-md-3" id="current-user-section">
-      <h3><%= current_user.nickname %></h3>
+      <h3><%= link_to "#{current_user.nickname}", user_path(current_user) %></h3>
       @<%= current_user.username %></br>
 
       <div class="current-user-stat-section">
@@ -22,12 +22,9 @@
       </div>
     </div>
 
-    <div id="pip-listing">
+    <div class="col-md-6" id="pip-listing">
       <% current_user.pips_of_self_and_following.each do |pip| %>
-        <div class="pip-box">
-          <%= pip.user.username %>
-          <%= pip.body %><br>
-        </div>
+        <%= render "pip_list_cell", pip: pip %>
       <% end %>
     </div>
   </body>

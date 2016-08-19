@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  # Abstractions of things belonging to the user
   def followers
   	User.find(Follow.where(followee_id: self.id).pluck(:user_id))
   end
@@ -46,6 +47,14 @@ class User < ActiveRecord::Base
     followees
   end
 
+  def favorite_of_pip(pip)
+    Favorite.where(user_id: self.id, pip_id: pip.id).first
+  end
+
+  def nickname
+    self.read_attribute(:nickname) || write_attribute(:nickname, username)
+  end
+
   def pips_of_self_and_following
     # Lists all the pips that the current user has written as well as 
     # the pips that the followees have written
@@ -53,11 +62,8 @@ class User < ActiveRecord::Base
     full_list.sort_by(&:created_at)
   end
 
+  # Abstract Verbs
   def follow(followee_id)
     Follow.new(user_id: self.id, followee_id: followee_id.to_i).save
-  end
-
-  def nickname
-    self.read_attribute(:nickname) || write_attribute(:nickname, username)
   end
 end

@@ -25,9 +25,7 @@ class PipsController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    unless @pip
-      @pip = Pip.find(params[:pip_id])
-    end
+    @pip = Pip.find(params[:pip_id])
     @pip.destroy
     respond_to do |format|
       format.html { redirect_to current_user, notice: 'Pip was successfully destroyed.' }

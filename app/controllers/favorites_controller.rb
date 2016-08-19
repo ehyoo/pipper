@@ -9,7 +9,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    Favorite.where(user_id: current_user.id, pip_id: params[:pip_id]).first.destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Pip successfully unfavorited.' }
       format.json { head :no_content }
