@@ -1,6 +1,25 @@
-<h1>Settings</h1>
+
 <%= render 'navbar' %>
-<div id="setting-box">
+<div class="col-md-3" id="current-user-section">
+  <h3><%= link_to "#{current_user.nickname}", user_path(current_user) %></h3>
+  @<%= current_user.username %></br>
+
+  <div class="current-user-stat-section">
+    Pips</br>
+    <%= current_user.pips.count %>
+  </div>
+  <div class="current-user-stat-section">
+    Following</br>
+    <%= current_user.following.count %>
+  </div>
+  <div class="current-user-stat-section">
+    Followers</br>
+    <%= current_user.followers.count %>
+  </div>
+</div>
+
+<div class="col-md-6 rounded-white-container" class="setting-box">
+  <h1>Settings</h1>
   <%= form_for(@user) do |f| %> 
     <div class="field">
       <%= f.label :username %>
@@ -10,8 +29,19 @@
       <%= f.label :Email %>
       <%= f.text_field :email %>
     </div>
+
+    <div class="field" %>
+      <%= f.label :Name %>
+      <%= f.text_field :nickname %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Password %>
+      <%= f.password_field :password %>
+    </div>
+
     <div class="actions">
-      <%= f.submit %> 
+      <%= f.submit "Save Changes" %> 
     </div>
   <% end %>
 </div>
